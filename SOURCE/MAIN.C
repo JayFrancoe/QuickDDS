@@ -1,4 +1,4 @@
-#include <stdio.h>
+#include <STDIO.H>
 #include "INCLUDE/FILEIO.H"
 #include "INCLUDE/DDS.H"
 
@@ -16,14 +16,14 @@ int main(int argc, char **argv)
 		return -1;
 	}
 
-	PATHINFO pi;
+	PATHINFO pi = {0,0,0,0};
 	GET_PATHINFO(&pi, argv[1]);
 
 	FILE *fh = OPEN_READ(pi.FilePath, F_BINARY);
 
 	puts("\n"
 		"QuickDDS\n"
-		"A simple DDS Extraction tool, developed by smakdev\n"
+		"A simple DDS Extraction tool, developed by Smakdev\n"
 		"\n"
 		"\n"
 		"  Offset   Size          Name        FourCC\n"
