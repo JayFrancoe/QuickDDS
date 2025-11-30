@@ -10,14 +10,18 @@ int main(int argc, char **argv)
 	{
 		printf(
 		"Incorrect usage:\n"
-		"Usage: %s.exe {File}\n"
-		"Or drag file onto %s.exe\n", ProgramName, ProgramName);
+		"Usage: %s.exe {File} \n"
+		"Or drag file(s) onto %s.exe\n", ProgramName, ProgramName);
 		
 		return -1;
 	}
 
+	for (int i = 1; i < argc; ++i)
+	{
+		printf("Processing file: %s\n", argv[i]);
+
 	PATHINFO pi = {0,0,0,0};
-	GET_PATHINFO(&pi, argv[1]);
+	GET_PATHINFO(&pi, argv[i]);
 
 	FILE *fh = OPEN_READ(pi.FilePath, F_BINARY);
 
@@ -73,7 +77,8 @@ int main(int argc, char **argv)
 		? printf("Found %u DDS files\n", NFILES) 
 		: printf("No DDS files found\n");
 
-
+	fclose(fh);
+	}
 
 	EXIT(0);
 }
