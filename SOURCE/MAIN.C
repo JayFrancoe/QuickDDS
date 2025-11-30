@@ -16,21 +16,24 @@ int main(int argc, char **argv)
 		return -1;
 	}
 
+    puts("\n"
+        "QuickDDS\n"
+        "A simple DDS Extraction tool, developed by Smakdev\n");
+
 	for (int i = 1; i < argc; ++i)
 	{
-		printf("Processing file: %s\n", argv[i]);
+		printf("\n"
+        "> Processing file: %s\n"
+        "---------------------------------------------------\n", argv[i]);
 
 	PATHINFO pi = {0,0,0,0};
 	GET_PATHINFO(&pi, argv[i]);
 
 	FILE *fh = OPEN_READ(pi.FilePath, F_BINARY);
 
-	puts("\n"
-		"QuickDDS\n"
-		"A simple DDS Extraction tool, developed by Smakdev\n"
-		"\n"
-		"\n"
-		"  Offset   Size          Name        FourCC\n"
+	
+		puts(
+        "  Offset   Size          Name        FourCC\n"
 		"---------------------------------------------------\n");
 
 	char OUTPATH[260];
@@ -71,11 +74,15 @@ int main(int argc, char **argv)
 		}
 	}
 
-	puts("---------------------------------------------------\n");
+	puts("---------------------------------------------------");
 
 	(NFILES) 
 		? printf("Found %u DDS files\n", NFILES) 
 		: printf("No DDS files found\n");
+
+    if (i <= argc) {
+        printf("\n(Processed %u/%u files)\n", i, argc - 1);
+    }
 
 	fclose(fh);
 	}
